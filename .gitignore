@@ -1,0 +1,9 @@
+# Paid products and their source stay on your computer only.
+# This repo is public: anything committed here can be downloaded by anyone.
+private/
+*.zip
+
+# OS clutter
+.DS_Store
+Thumbs.db
+desktop.ini
