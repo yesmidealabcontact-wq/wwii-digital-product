@@ -37,7 +37,7 @@ Website: **https://shop.yesmidealab.com**, hosted on AWS (S3 + CloudFront).
 ## Before launch
 
 - Buy buttons point to `https://yesmidealab.gumroad.com/l/pastorius`. Create that Gumroad product, or change both links in `site/index.html`.
-- The YouTube button points to channel `UCKcqq-MwhD2JaGe_MjMvO0A`. Confirm it is yours.
+- The YouTube button points to https://www.youtube.com/@LivesatWW2.
 
 ## Rebuilding the dossier PDF
 
