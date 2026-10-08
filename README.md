@@ -1,6 +1,6 @@
-# WWII Insider Shop
+# Lives At WW2 Shop
 
-Website and products for WWII Insider's printable, large-print history dossiers.
+Website and products for Lives At WW2's printable, large-print history dossiers.
 Website: **https://shop.yesmidealab.com**, hosted on AWS (S3 + CloudFront).
 
 > **Keep this repo private.** `private/` holds the paid PDFs.
@@ -48,4 +48,4 @@ paths at the top of `geo.py` and `dossier_pastorius.py` to point to them.
 
 ## Licence
 
-Website code: MIT (see `LICENSE`). Dossier text, maps and images: © 2026 WWII Insider, all rights reserved.
+Website code: MIT (see `LICENSE`). Dossier text, maps and images: © 2026 Lives At WW2, all rights reserved.

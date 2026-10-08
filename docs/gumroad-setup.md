@@ -4,7 +4,7 @@ Do these in order. Total time: about 30–40 minutes. The only waiting is Gumroa
 
 ## 1. Create the account (you must do this yourself)
 1. Go to gumroad.com > Start selling. Sign up with yesmidealab.contact@gmail.com and verify the email.
-2. Settings > Profile: name "WWII Insider", username **yesmidealab** (this makes the link `yesmidealab.gumroad.com`), short bio, profile picture.
+2. Settings > Profile: name "Lives At WW2", username **yesmidealab** (this makes the link `yesmidealab.gumroad.com`), short bio, profile picture.
 
 ## 2. Payout details (Settings > Payments)
 - Country: Bangladesh. Currency: USD (customers always pay in USD).
