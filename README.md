@@ -1,47 +1,41 @@
 # Lives At WW2 Shop
 
-Website and products for Lives At WW2's printable, large-print history dossiers.
-Website: **https://shop.yesmidealab.com**, hosted on AWS (S3 + CloudFront).
+Website for Lives At WW2's printable, large-print history dossiers.
+Website: **https://shop.yesmidealab.com**, hosted free on GitHub Pages.
 
-> **Keep this repo private.** `private/` holds the paid PDFs.
+> **The paid PDFs are NOT in this repo.** They live only on your own computer (in `private/`, which git ignores) and on Gumroad, where buyers download them.
 
 ## Layout
 
-| Path | What it is | Public? |
+| Path | What it is | In this repo? |
 | --- | --- | --- |
-| `site/` | The website. The only folder ever uploaded to AWS | Yes, once deployed |
+| `site/` | The website. The only folder GitHub Pages publishes | Yes (public) |
 | `site/index.html` | Shop page for Mission Dossier No. 1: Operation Pastorius | Yes |
 | `site/policies.html`, `site/404.html` | Refunds and privacy; "page not found" | Yes |
 | `site/assets/` | Styles, fonts (SIL Open Font License, licence files included), preview images | Yes |
-| `site/free/pastorius-free-sample.pdf` | Free 3-page sample | Yes |
-| `private/products/` | Paid PDFs (US Letter + A4). Upload these to Gumroad | **No** |
-| `private/build/` | Python scripts that build the dossier PDF and maps | **No** |
-| `.github/workflows/deploy.yml` | Uploads `site/` to S3 and refreshes CloudFront on each push to `main` | n/a |
+| `site/free/pastorius-free-sample.pdf` | Free 3-page sample (pages 1, 5 and 7) | Yes |
+| `marketing/` | Gumroad thumbnail, Gumroad custom landing page, share-image source | Yes |
+| `docs/gumroad-setup.md` | Step-by-step Gumroad product setup | Yes |
+| `private/products/` | Paid PDFs (US Letter + A4). Upload these to Gumroad | **No: your computer only** |
+| `private/build/` | Python scripts that build the dossier PDF and maps | **No: your computer only** |
+| `.github/workflows/deploy.yml` | Publishes `site/` to GitHub Pages on each push to `main` | Yes |
 
-## Hosting on AWS (one-time setup)
+## Hosting on GitHub Pages (one-time setup)
 
-1. **Certificate:** in AWS Certificate Manager, region **us-east-1** (CloudFront requires it), request a public certificate for `shop.yesmidealab.com`. Validate it by adding the CNAME record it shows to your DNS.
-2. **Bucket:** create an S3 bucket (e.g. `shop.yesmidealab.com`). Keep **Block all public access ON**: CloudFront reads it privately.
-3. **CloudFront distribution:**
-   - Origin: the bucket, with **Origin access control (OAC)**; let CloudFront update the bucket policy.
-   - Viewer protocol policy: **Redirect HTTP to HTTPS**. Default root object: `index.html`.
-   - Alternate domain name: `shop.yesmidealab.com`, with the certificate from step 1.
-   - Custom error responses: 403 and 404 → `/404.html`, response code 404.
-4. **DNS:** add a record for `shop` pointing to the distribution's `dxxxx.cloudfront.net` domain (CNAME, or an alias A/AAAA record if the domain is in Route 53).
-5. **Let GitHub deploy:**
-   - IAM > Identity providers: add OpenID Connect provider `https://token.actions.githubusercontent.com`, audience `sts.amazonaws.com`.
-   - Create a role trusted by that provider, limited to `repo:yesmidealabcontact-wq/wwii-digital-product:ref:refs/heads/main`, with permission to `s3:ListBucket` on the bucket, `s3:PutObject`/`s3:DeleteObject` on `bucket/*`, and `cloudfront:CreateInvalidation` on the distribution.
-   - In GitHub, **Settings > Secrets and variables > Actions**: secret `AWS_ROLE_ARN`; variables `AWS_REGION`, `S3_BUCKET`, `CLOUDFRONT_DISTRIBUTION_ID`.
-6. Push a change under `site/` (or run the workflow from the **Actions** tab). The site updates within a few minutes.
+1. Repo **Settings > Pages > Build and deployment > Source**: choose **GitHub Actions**.
+2. Push any change under `site/` (or run "Deploy site to GitHub Pages" from the **Actions** tab). It deploys in about a minute.
+3. **Custom domain:** in your DNS for `yesmidealab.com`, add a **CNAME** record: name `shop`, value `yesmidealabcontact-wq.github.io`.
+4. **Settings > Pages > Custom domain**: enter `shop.yesmidealab.com`, save, wait for the DNS check, then tick **Enforce HTTPS**.
+5. Recommended: **Settings > Pages > Verify** the domain `yesmidealab.com` so nobody else can claim your subdomain on GitHub.
 
 ## Before launch
 
-- Buy buttons point to `https://yesmidealab.gumroad.com/l/pastorius`. Create that Gumroad product, or change both links in `site/index.html`.
+- Buy buttons point to `https://yesmidealab.gumroad.com/l/pastorius`. Create that Gumroad product (see `docs/gumroad-setup.md`), or change both links in `site/index.html`.
 - The YouTube button points to https://www.youtube.com/@LivesatWW2.
 
 ## Rebuilding the dossier PDF
 
-`private/build/dossier_pastorius.py` needs Python with Playwright, plus two downloads not stored here:
+The build scripts live in `private/build/` on your computer. They need Python with Playwright, plus
 Natural Earth GeoJSON (`github.com/nvkelso/natural-earth-vector`, folder `geojson/`) and the
 Google Fonts files for Source Serif 4, IBM Plex Sans and Courier Prime. Edit the `NE` and `G`
 paths at the top of `geo.py` and `dossier_pastorius.py` to point to them.

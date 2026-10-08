@@ -1,5 +1,8 @@
-# This repo is PRIVATE. private/ (paid PDFs, build scripts) is tracked here as a backup,
-# but only site/ is ever uploaded to the public website.
+# This repo is PUBLIC. Paid PDFs and build scripts stay on your computer only.
+private/
+*.pdf
+!site/free/*.pdf
+
 *.zip
 *.bundle
 

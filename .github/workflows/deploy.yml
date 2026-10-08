@@ -1,13 +1,8 @@
-# Uploads ONLY the site/ folder to S3 and refreshes CloudFront on every push to main.
-# private/ (paid PDFs, build scripts) is never uploaded.
+# Publishes ONLY the site/ folder to GitHub Pages on every push to main.
 #
-# One-time setup (see README "Hosting on AWS"): add these in
-# GitHub repo > Settings > Secrets and variables > Actions:
-#   Secrets:   AWS_ROLE_ARN                 IAM role GitHub may assume (OIDC)
-#   Variables: AWS_REGION                   e.g. us-east-1
-#              S3_BUCKET                    e.g. shop.yesmidealab.com
-#              CLOUDFRONT_DISTRIBUTION_ID   e.g. E1ABCDEF234567
-name: Deploy site to AWS
+# One-time setup: repo > Settings > Pages > Build and deployment > Source: "GitHub Actions".
+# Custom domain: Settings > Pages > Custom domain = shop.yesmidealab.com, then tick "Enforce HTTPS".
+name: Deploy site to GitHub Pages
 
 on:
   push:
@@ -16,39 +11,25 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write   # lets GitHub sign in to AWS without stored access keys
   contents: read
+  pages: write
+  id-token: write
 
 concurrency:
-  group: deploy-site
+  group: pages
   cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Sign in to AWS
-        uses: aws-actions/configure-aws-credentials@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: ${{ vars.AWS_REGION }}
-
-      - name: Upload long-lived files (fonts, images, PDFs) with a 30-day cache
-        run: |
-          aws s3 sync site/ "s3://${{ vars.S3_BUCKET }}/" --delete \
-            --exclude "*.html" --exclude "*.css" \
-            --cache-control "public, max-age=2592000"
-
-      - name: Upload pages and styles with a short cache
-        run: |
-          aws s3 sync site/ "s3://${{ vars.S3_BUCKET }}/" --delete \
-            --exclude "*" --include "*.html" --include "*.css" \
-            --cache-control "public, max-age=300"
-
-      - name: Refresh CloudFront
-        run: |
-          aws cloudfront create-invalidation \
-            --distribution-id "${{ vars.CLOUDFRONT_DISTRIBUTION_ID }}" \
-            --paths "/*"
+          path: site
+      - id: deployment
+        uses: actions/deploy-pages@v4
