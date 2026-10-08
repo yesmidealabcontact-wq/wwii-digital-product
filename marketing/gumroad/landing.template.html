@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Operation Pastorius: the case file</title>
+<style>
+@font-face{font-family:"Plex Sans";src:url("{{FONT:ibm-plex-sans}}") format("woff");font-weight:100 700;font-stretch:85% 100%;font-display:swap}
+@font-face{font-family:"Courier Prime";src:url("{{FONT:courier-prime-bold}}") format("woff");font-weight:700;font-display:swap}
+
+:root{
+  --bg:#f8f5ee; --card:#ffffff; --band:#ece4d0; --ink:#1b1a17; --muted:#4a4740; --rule:#cfc5ad;
+  --navy:#1f3a5f; --accent:#9e3022; --accent-ink:#ffffff; --accent-hover:#7d2418; --stamp:#9e3022;
+  --shadow:0 18px 40px rgba(40,30,10,.18);
+  --sans:"Plex Sans","Segoe UI",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:"Courier Prime","Courier New",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#16150f; --card:#211f19; --band:#1c1a14; --ink:#f3efe4; --muted:#c3bdae; --rule:#3a362c;
+    --navy:#9dbbe0; --accent:#c4493a; --accent-ink:#ffffff; --accent-hover:#d65e4f; --stamp:#e2786a;
+    --shadow:0 18px 40px rgba(0,0,0,.55);
+  }
+}
+*{box-sizing:border-box}
+html{font-size:20px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (max-width:600px){html{font-size:19px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.6}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--navy);text-underline-offset:3px;text-decoration-thickness:2px}
+:focus-visible{outline:4px solid #e0a100;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+h1,h2,h3{font-family:var(--sans);font-stretch:85%;font-weight:700;line-height:1.1;margin:0 0 .5em;color:var(--ink)}
+h1{font-size:clamp(2.3rem,6vw,3.6rem);letter-spacing:-.01em}
+h2{font-size:clamp(1.7rem,3.6vw,2.3rem)}
+h3{font-size:1.2rem;font-stretch:90%}
+p{margin:0 0 1em;max-width:36em}
+.kicker{font-family:var(--mono);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stamp);margin:0 0 .7em}
+.lead{font-size:1.2rem;line-height:1.55}
+section{padding:72px 0}
+@media (max-width:600px){section{padding:48px 0}}
+.band{background:var(--card);border-block:1px solid var(--rule)}
+.tan{background:var(--band)}
+
+/* buy buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:14px 32px;border-radius:10px;
+  font-family:var(--sans);font-weight:700;font-size:1.15rem;text-decoration:none;border:3px solid transparent;cursor:pointer;text-align:center;
+  transition:transform .15s ease,background-color .15s ease}
+.btn-buy{background:var(--accent);color:var(--accent-ink)}
+.btn-buy:hover{background:var(--accent-hover);color:var(--accent-ink);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:var(--bg)}
+.btn-wide{width:100%;max-width:520px}
+.note{font-family:var(--sans);font-size:.9rem;color:var(--muted);margin:10px 0 0}
+
+/* hero */
+.hero{padding:56px 0 72px;position:relative;overflow:hidden}
+.hero .grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:56px;align-items:center}
+@media (max-width:860px){.hero .grid{grid-template-columns:minmax(0,1fr);gap:40px}}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0 0}
+.price{font-family:var(--sans);font-weight:700;font-size:2.2rem;line-height:1}
+.price-sub{font-family:var(--sans);color:var(--muted);font-size:1rem}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:22px 0 4px}
+.ticks{list-style:none;padding:0;margin:24px 0 0;font-family:var(--sans);font-size:1rem}
+.ticks li{display:flex;gap:12px;align-items:flex-start;margin:0 0 10px}
+.ticks li::before{content:"\2713";flex:none;width:24px;height:24px;border-radius:50%;background:var(--navy);color:var(--bg);
+  font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px}
+.cover-wrap{position:relative;justify-self:center;width:100%;max-width:420px}
+.cover{background:#fff;padding:14px;box-shadow:var(--shadow);transform:rotate(1.5deg)}
+.stamp{position:absolute;left:-18px;bottom:36px;font-family:var(--mono);font-weight:700;font-size:1.1rem;letter-spacing:.12em;
+  color:var(--stamp);border:4px solid var(--stamp);padding:6px 14px;transform:rotate(-8deg);background:var(--bg);
+  animation:stamp .5s cubic-bezier(.2,1.6,.4,1) .4s both}
+@keyframes stamp{from{opacity:0;transform:rotate(-8deg) scale(1.8)}to{opacity:1;transform:rotate(-8deg) scale(1)}}
+
+/* the hook: sixteen days */
+.days{display:grid;grid-template-columns:repeat(16,1fr);gap:6px;margin:28px 0 10px;max-width:760px}
+.days span{aspect-ratio:1;border-radius:4px;background:var(--rule);display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:.62rem;font-weight:700;color:var(--muted)}
+.days span.on{background:var(--accent);color:var(--accent-ink)}
+@media (max-width:600px){.days{grid-template-columns:repeat(8,1fr)}}
+.days-legend{font-family:var(--sans);font-size:.95rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 20px}
+
+/* previews */
+.previews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:36px}
+@media (max-width:860px){.previews{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.previews{grid-template-columns:minmax(0,1fr)}}
+.previews figure{margin:0}
+.previews button{all:unset;display:block;cursor:zoom-in;background:#fff;padding:8px;border:1px solid var(--rule);box-shadow:0 6px 16px rgba(40,30,10,.08);
+  transition:transform .2s ease,border-color .2s ease;width:100%;box-sizing:border-box}
+.previews button:hover{transform:translateY(-4px);border-color:var(--navy)}
+.previews button:focus-visible{outline:4px solid #e0a100;outline-offset:3px}
+.previews figcaption{font-family:var(--sans);font-size:1rem;margin-top:10px}
+.previews figcaption b{display:block}
+
+.contents{columns:2;column-gap:48px;padding-left:1.3em;margin:24px 0 0;font-size:1.05rem}
+@media (max-width:700px){.contents{columns:1}}
+.contents li{break-inside:avoid;margin-bottom:8px}
+
+.features{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:32px}
+@media (max-width:900px){.features{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.features{grid-template-columns:minmax(0,1fr)}}
+.feature{border-top:4px solid var(--ink);padding-top:14px}
+.feature p{font-size:1rem;margin:0}
+
+.steps{list-style:none;padding:0;margin:32px 0 0;display:grid;gap:20px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:60px 1fr;gap:20px;align-items:start;background:var(--card);border:1px solid var(--rule);padding:22px;border-radius:10px;counter-increment:s}
+.steps li::before{content:counter(s);display:flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;
+  background:var(--navy);color:var(--bg);font-family:var(--sans);font-weight:700;font-size:1.5rem}
+.steps h3{margin:.3em 0 .3em}
+.steps p{margin:0;font-size:1.05rem}
+
+.faq{margin-top:28px;max-width:860px}
+.faq details{background:var(--card);border:1px solid var(--rule);border-radius:10px;margin-bottom:14px}
+.faq summary{cursor:pointer;list-style:none;padding:20px 60px 20px 22px;font-family:var(--sans);font-weight:700;font-size:1.1rem;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:1.8rem;font-weight:500;color:var(--navy)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details>div{padding:0 22px 6px}
+.faq details p{font-size:1.05rem}
+
+.final{text-align:center}
+.final p{margin-left:auto;margin-right:auto}
+.final .price{font-size:3rem;display:block;margin:12px 0 4px}
+.review{font-family:var(--sans);font-size:.95rem;color:var(--muted);margin-top:14px}
+
+footer{border-top:1px solid var(--rule);padding:36px 0;font-family:var(--sans);font-size:.95rem;color:var(--muted)}
+footer p{max-width:none;margin:0 0 6px}
+
+/* sticky buy bar on phones */
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--rule);padding:10px 16px;
+  display:none;align-items:center;justify-content:space-between;gap:12px;z-index:20;transform:translateY(110%);transition:transform .25s ease}
+.bar.show{transform:none}
+.bar .btn{min-height:52px;padding:10px 22px;font-size:1.05rem}
+.bar b{font-family:var(--sans);font-size:1.2rem}
+@media (max-width:700px){.bar{display:flex}body{padding-bottom:76px}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(10,9,7,.88);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.lb.open{display:flex}
+.lb img{max-height:88vh;width:auto;background:#fff;padding:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb-close{position:absolute;top:16px;right:16px;min-width:56px;min-height:56px;border-radius:50%;border:0;background:#fff;color:#1b1a17;
+  font-size:1.8rem;font-family:var(--sans);cursor:pointer}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
+</style>
+</head>
+<body class="no-js">
+
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap grid">
+    <div>
+      <p class="kicker">WWII Insider · Mission Dossier No. 1</p>
+      <h1>Eight saboteurs. Two beaches. Sixteen days.</h1>
+      <p class="lead">In June 1942, German submarines landed eight saboteurs on American beaches. Within sixteen days, every one of them was caught. This large-print case file lets you follow the whole story at your own pace: the maps, the men, the night on the beach and the trial.</p>
+      <div class="price-row">
+        <span class="price" data-gumroad-field="price">$7</span>
+        <span class="price-sub">one-time payment · instant PDF download</span>
+      </div>
+      <div class="actions">
+        <a class="btn btn-buy" href="#buy" role="button" data-gumroad-action="buy">Get the case file</a>
+        <a class="btn btn-ghost" href="#inside">See the pages first</a>
+      </div>
+      <p class="note">Secure checkout by Gumroad. Your download link arrives by email straight away.</p>
+      <ul class="ticks">
+        <li>15 pages, printed in large, clear type</li>
+        <li>US Letter and A4 versions, both included</li>
+        <li>Opens on any computer, tablet or phone</li>
+      </ul>
+    </div>
+    <div class="cover-wrap">
+      <img class="cover" src="{{IMG:cover}}" width="560" height="725"
+           alt="Cover of Mission Dossier No. 1, Operation Pastorius, with a map of the two U-boat routes from France to Long Island and Florida.">
+      <span class="stamp" aria-hidden="true">CASE FILE</span>
+    </div>
+  </div>
+</section>
+
+<!-- SIXTEEN DAYS -->
+<section class="band">
+  <div class="wrap reveal">
+    <p class="kicker">The sixteen days</p>
+    <h2>From the beach to the last arrest</h2>
+    <p class="lead">The first team waded ashore at Amagansett, Long Island, just after midnight on June 13, 1942. By June 27 the FBI had all eight men. The dossier walks you through each of those days.</p>
+    <div class="days" role="img" aria-label="A calendar strip of sixteen days, June 13 to June 28, 1942, with key days marked: the two landings and the final arrests.">
+      <span class="on">13</span><span>14</span><span>15</span><span>16</span><span class="on">17</span><span>18</span><span>19</span><span>20</span>
+      <span>21</span><span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span class="on">27</span><span>28</span>
+    </div>
+    <p class="days-legend"><span><b>June 13:</b> Long Island landing</span><span><b>About June 17:</b> Florida landing</span><span><b>June 27:</b> all eight in custody</span></p>
+  </div>
+</section>
+
+<!-- WHAT'S INSIDE -->
+<section id="inside">
+  <div class="wrap">
+    <p class="kicker">What's inside</p>
+    <h2>Turn the pages before you buy</h2>
+    <p class="lead">Six of the fifteen pages, shown as they print. Tap any page to see it larger.</p>
+    <div class="previews">
+      <figure class="reveal"><button type="button" data-full="{{IMG:p04-crossing}}" aria-label="Enlarge page 4, the crossing"><img src="{{IMG:p04-crossing}}" width="380" height="491" loading="lazy" alt="Page 4: map of the Atlantic crossing by U-202 and U-584."></button>
+        <figcaption><b>The crossing</b>Map of both U-boat routes from France</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p05-amagansett}}" aria-label="Enlarge page 5, Amagansett"><img src="{{IMG:p05-amagansett}}" width="380" height="491" loading="lazy" alt="Page 5: map of Long Island and a diagram of the beach at Amagansett."></button>
+        <figcaption><b>Amagansett, June 13</b>Where the first team came ashore</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p06-night-log}}" aria-label="Enlarge page 6, minute by minute"><img src="{{IMG:p06-night-log}}" width="380" height="491" loading="lazy" alt="Page 6: a minute-by-minute table of the night on the beach."></button>
+        <figcaption><b>Minute by minute</b>The night on the beach, from the 1942 Navy war diary</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p07-cullen}}" aria-label="Enlarge page 7, John Cullen"><img src="{{IMG:p07-cullen}}" width="380" height="491" loading="lazy" alt="Page 7: the life of Coast Guardsman John C. Cullen."></button>
+        <figcaption><b>One life: John Cullen</b>The 21-year-old who met them in the fog</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p08-targets}}" aria-label="Enlarge page 8, the targets"><img src="{{IMG:p08-targets}}" width="380" height="491" loading="lazy" alt="Page 8: map of the planned targets in the eastern United States."></button>
+        <figcaption><b>The targets</b>Factories, bridges and railways on their list</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p14-record-check}}" aria-label="Enlarge page 14, record check"><img src="{{IMG:p14-record-check}}" width="380" height="491" loading="lazy" alt="Page 14: a table of where historical accounts disagree."></button>
+        <figcaption><b>Record check</b>Where the accounts disagree, and why</figcaption></figure>
+    </div>
+
+    <h3 style="margin-top:52px">All 15 pages</h3>
+    <ol class="contents">
+      <li>Cover</li>
+      <li>The story in one minute</li>
+      <li>The people: eight saboteurs and the men who caught them</li>
+      <li>Map: the Atlantic crossing</li>
+      <li>Map: Amagansett, the night of June 13</li>
+      <li>The night on the beach, minute by minute</li>
+      <li>One life: John C. Cullen</li>
+      <li>Map: the targets</li>
+      <li>Sixteen days: the timeline</li>
+      <li>Why it failed: the leader's phone calls</li>
+      <li>The trial and the sentences</li>
+      <li>From the court record</li>
+      <li>What changed afterwards</li>
+      <li>Record check: where the accounts disagree</li>
+      <li>Sources and further reading</li>
+    </ol>
+    <div class="actions" style="margin-top:36px">
+      <a class="btn btn-buy btn-wide" href="#buy" role="button" data-gumroad-action="buy">Get all 15 pages: <span data-gumroad-field="price">$7</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">Made for reading</p>
+    <h2>Easy on the eyes, careful with the facts</h2>
+    <div class="features">
+      <div class="feature reveal"><h3>Large print</h3><p>Body text is 14 point, with strong contrast. No squinting at tiny captions.</p></div>
+      <div class="feature reveal"><h3>Print at home</h3><p>Two files included: US Letter and A4. A plain white background saves ink.</p></div>
+      <div class="feature reveal"><h3>Checked against the record</h3><p>Dates and times come from FBI files, the 1942 Navy war diary and the Supreme Court.</p></div>
+      <div class="feature reveal"><h3>Sources listed</h3><p>Every source is named at the back, so you can look up the originals yourself.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW BUYING WORKS -->
+<section class="tan">
+  <div class="wrap">
+    <p class="kicker">How buying works</p>
+    <h2>Three simple steps</h2>
+    <ol class="steps">
+      <li><div><h3>Press the red button</h3><p>A secure Gumroad checkout opens on this page.</p></div></li>
+      <li><div><h3>Pay by card</h3><p>Type your email address and card details. The price is in US dollars; your bank converts it if you pay in another currency.</p></div></li>
+      <li><div><h3>Open your email</h3><p>Your receipt arrives within a minute with a "View content" link. Click it to download the PDF. Keep the email: the link works again any time.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Questions</p>
+    <h2>Questions people ask</h2>
+    <div class="faq">
+      <details><summary>Is this a printed book?</summary><div><p>No. It is a digital file (a PDF) that you download and read on screen or print yourself. Nothing is posted to you.</p></div></details>
+      <details><summary>How do I open a PDF?</summary><div><p>On most computers, tablets and phones you simply tap or double-click the file. If it won't open, the free Adobe Acrobat Reader works on every device. Email us if you get stuck.</p></div></details>
+      <details><summary>Can I print it?</summary><div><p>Yes. Both US Letter and A4 versions are included, so it fits your printer's paper. Choose "Actual size" or "100%" in the print settings.</p></div></details>
+      <details><summary>I lost the download. What now?</summary><div><p>Search your email for "Gumroad" and open the receipt: the link works again. Or email us and we'll resend it.</p></div></details>
+      <details><summary>What if I'm not happy with it?</summary><div><p>Email us within 30 days and we will refund you in full. No forms, no arguments.</p></div></details>
+      <details><summary>Are there photographs?</summary><div><p>This edition uses maps and diagrams drawn for it, plus extracts from official documents. It does not reproduce photographs.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="band final" id="buy">
+  <div class="wrap">
+    <p class="kicker">Mission Dossier No. 1</p>
+    <h2 data-gumroad-field="name">Operation Pastorius: the case file</h2>
+    <span class="price" data-gumroad-field="price">$7</span>
+    <p class="note" style="margin-bottom:22px">One-time payment · instant download · 30-day refund</p>
+    <a class="btn btn-buy btn-wide" href="#buy" role="button" data-gumroad-action="buy">Get the case file</a>
+    <p class="review"><span data-gumroad-field="rating">Be the first to review</span> · <span data-gumroad-field="review-count">new release</span></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>WWII Insider</b>: true stories from the Second World War.</p>
+    <p>Questions or help: <a href="mailto:yesmidealab.contact@gmail.com">yesmidealab.contact@gmail.com</a></p>
+  </div>
+</footer>
+
+<div class="bar" id="bar" aria-hidden="true">
+  <b data-gumroad-field="price">$7</b>
+  <a class="btn btn-buy" href="#buy" role="button" data-gumroad-action="buy" tabindex="-1">Get the case file</a>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Page preview">
+  <button class="lb-close" type="button" aria-label="Close preview">&times;</button>
+  <img alt="" id="lb-img">
+</div>
+
+<script>
+(function () {
+  document.body.classList.remove("no-js");
+
+  // reveal on scroll
+  var els = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  } else { els.forEach(function (el) { el.classList.add("in"); }); }
+
+  // sticky buy bar once the hero is out of view
+  var bar = document.getElementById("bar"), hero = document.getElementById("top"), fin = document.getElementById("buy");
+  function onScroll() {
+    var past = hero.getBoundingClientRect().bottom < 0;
+    var atEnd = fin.getBoundingClientRect().top < window.innerHeight;
+    bar.classList.toggle("show", past && !atEnd);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  // page preview lightbox
+  var lb = document.getElementById("lb"), img = document.getElementById("lb-img"), closeBtn = lb.querySelector(".lb-close"), last = null;
+  function open(btn) { last = btn; img.src = btn.getAttribute("data-full"); img.alt = btn.querySelector("img").alt; lb.classList.add("open"); closeBtn.focus(); }
+  function close() { lb.classList.remove("open"); img.removeAttribute("src"); if (last) last.focus(); }
+  document.querySelectorAll(".previews button").forEach(function (b) { b.addEventListener("click", function () { open(b); }); });
+  closeBtn.addEventListener("click", close);
+  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && lb.classList.contains("open")) close(); });
+})();
+</script>
+</body>
+</html>
