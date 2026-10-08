@@ -20,7 +20,7 @@ Do these in order. Total time: about 30–40 minutes. The only waiting is Gumroa
 | Price | $7 (one-time, USD) |
 | **URL slug** | **pastorius** (this must match the website buttons: `yesmidealab.gumroad.com/l/pastorius`) |
 | Cover image | `site/assets/img/cover.jpg` |
-| Thumbnail | same image |
+| Thumbnail | `marketing/gumroad/pastorius-thumbnail-1200.jpg` (square, 1200×1200) |
 | Files | Upload BOTH from `private/products/`: `..._Letter.pdf` and `..._A4.pdf` |
 
 **Description** (paste):
