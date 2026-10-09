@@ -56,34 +56,44 @@ Edit both Buy links in `site/index.html` (search for `gumroad.com/l/`), commit, 
 
 ---
 
-# Product 2: The Pipes at Dawn (main product on the website)
+# Product 2: The Pipes at Dawn, Complete Pack (main product on the website)
 
 Create it the same way as step 3 above, with these values.
 
 | Field | Enter exactly |
 | --- | --- |
 | Type | Digital product |
-| Name | The Pipes at Dawn (Mission Dossier No. 2) |
+| Name | The Pipes at Dawn: Complete Pack (Mission Dossier No. 2) |
 | Price | $10 (one-time, USD) |
 | **URL slug** | **pipes-at-dawn** (must match the website: `yesmidealab.gumroad.com/l/pipes-at-dawn`) |
-| Cover image | `site/assets/img/pipes/cover.jpg` |
+| Cover image | `site/assets/img/pipes/cover.jpg` (add `pack-maps.jpg`, `pack-prints.jpg`, `pack-certificate.jpg` as extra preview images) |
 | Thumbnail | `marketing/gumroad/pipes-thumbnail-1200.jpg` (square, 1200×1200) |
-| Files | `private/products/Lives-At-WW2_Mission-Dossier-02_The-Pipes-at-Dawn_Letter.pdf` (US Letter only) |
+| Files | Upload all five PDFs from `private/products/pipes-at-dawn/` **and** `The-Pipes-at-Dawn_Complete-Pack.zip` (one-click download of everything) |
+
+The five PDFs (all US Letter):
+1. `Lives-At-WW2_Mission-Dossier-02_The-Pipes-at-Dawn_Letter.pdf` (27 pages)
+2. `Lives-At-WW2_Pipes-at-Dawn_Map-Pack_Letter.pdf` (7 maps)
+3. `Lives-At-WW2_Pipes-at-Dawn_Archive-Photo-Prints_Letter.pdf` (5 prints)
+4. `Lives-At-WW2_Pipes-at-Dawn_Tribute-Poster-and-Certificate_Letter.pdf`
+5. `Lives-At-WW2_Pipes-at-Dawn_Family-History-Workbook_Letter.pdf`
 
 **Description** (paste):
 
 > A man with no rifle, walking upright ahead of the attack, playing the bagpipes. Follow Scotland's battle pipers from the gas at Loos in 1915 to the minefields of El Alamein and Bill Millin on D-Day, and find out which famous stories are true and which are only legend.
 >
-> • 22 pages in large, clear type (US Letter; on A4 choose "Fit to page")
-> • 5 maps: Loos, El Alamein, the Alamein night attack, Sword Beach to Pegasus Bridge, and a visitor's map
-> • Record check: every famous claim marked Confirmed, Unproven or Legend, with sources
-> • The Victoria Cross citation, the roll of named Alamein pipers, the tunes they played
-> • "Was my grandfather a piper?" research guide and worksheet
-> • A frameable tribute page
+> **What you get: five printable files**
+> 1. The dossier, 27 large-print pages: the full story, a record check on every famous claim, four archive photographs with notes on what to look for, the Victoria Cross citation, the roll of named Alamein pipers, the tunes, a timeline and sources
+> 2. Map pack: 7 large maps, one to a page (Loos, El Alamein, the night attack, Sicily, Sword Beach to Pegasus Bridge, and a visitor's map)
+> 3. Archive photo prints: 5 public-domain wartime photographs to frame
+> 4. Tribute posters and a Certificate of Remembrance to fill in with a family name
+> 5. Family history workbook: "Was my grandfather a piper?" guide, questions to ask the family, a records log and a notes page
 >
+> All files are US Letter (on A4, choose "Fit to page").
 > Goes with the documentary "What German Soldiers Said About the Scottish Highlanders' Bagpipes at Dawn" on Lives At WW2.
-> Digital download (PDF). Nothing is posted to you. 30-day money-back guarantee: email yesmidealab.contact@gmail.com.
+> Digital download. Nothing is posted to you. 30-day money-back guarantee: email yesmidealab.contact@gmail.com.
 
-**Receipt / "Content" page:** "Thank you! Your dossier is below. Print at 100% on US Letter, or 'Fit to page' on A4. Questions? yesmidealab.contact@gmail.com"
+**Receipt / "Content" page:** "Thank you! Start with file 1, the dossier. Print at 100% on US Letter, or 'Fit to page' on A4. Questions? yesmidealab.contact@gmail.com"
 
 **On YouTube:** put `https://shop.yesmidealab.com` (or the Gumroad link) in the video description and pinned comment of https://youtu.be/nQwC8NlTFeY.
+
+**Rebuilding:** in `private/build`, run `python dossier_pipes.py` then `python pack_pipes.py`. Archive photos live in `private/photos/` (never commit them with the paid files; they are public domain, but the folder is private by design).
