@@ -66,8 +66,8 @@ Create it the same way as step 3 above, with these values.
 | Name | The Pipes at Dawn: Complete Pack (Mission Dossier No. 2) |
 | Price | $10 (one-time, USD) |
 | **URL slug** | **pipes-at-dawn** (must match the website: `yesmidealab.gumroad.com/l/pipes-at-dawn`) |
-| Cover image | `site/assets/img/pipes/cover.jpg` (add `pack-maps.jpg`, `pack-prints.jpg`, `pack-certificate.jpg` as extra preview images) |
-| Thumbnail | `marketing/gumroad/pipes-thumbnail-1200.jpg` (square, 1200×1200) |
+| Cover image | `marketing/gumroad/pipes-cover-1280x720.jpg` (1280×720; add `site/assets/img/pipes/pack-maps.jpg`, `pack-prints.jpg`, `pack-certificate.jpg` as extra preview images) |
+| Thumbnail | `marketing/gumroad/pipes-thumbnail-photo-1200.jpg` (square, 1200×1200; the older `pipes-thumbnail-1200.jpg` is a spare) |
 | Files | Upload all five PDFs from `private/products/pipes-at-dawn/` **and** `The-Pipes-at-Dawn_Complete-Pack.zip` (one-click download of everything) |
 
 The five PDFs (all US Letter):
