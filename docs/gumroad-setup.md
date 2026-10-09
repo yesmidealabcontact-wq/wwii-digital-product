@@ -94,7 +94,7 @@ The five PDFs (all US Letter):
 
 **Receipt / "Content" page:** "Thank you! Start with file 1, the dossier. Print at 100% on US Letter, or 'Fit to page' on A4. Questions? yesmidealab.contact@gmail.com"
 
-**On YouTube:** put `https://shop.yesmidealab.com` (or the Gumroad link) in the video description and pinned comment of https://youtu.be/nQwC8NlTFeY.
+**On YouTube:** put `https://shop.yesmedialab.com` (or the Gumroad link) in the video description and pinned comment of https://youtu.be/nQwC8NlTFeY.
 
 **Rebuilding:** in `private/build`, run `python dossier_pipes.py` then `python pack_pipes.py`. Archive photos live in `private/photos/` (never commit them with the paid files; they are public domain, but the folder is private by design).
 

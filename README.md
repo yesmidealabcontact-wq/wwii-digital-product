@@ -1,7 +1,7 @@
 # Lives At WW2 Shop
 
 Website for Lives At WW2's printable, large-print history dossiers.
-Website: **https://shop.yesmidealab.com**, hosted free on GitHub Pages.
+Website: **https://shop.yesmedialab.com**, hosted free on GitHub Pages.
 
 > **The paid PDFs are NOT in this repo.** They live only on your own computer (in `private/`, which git ignores) and on Gumroad, where buyers download them.
 
@@ -26,9 +26,9 @@ Website: **https://shop.yesmidealab.com**, hosted free on GitHub Pages.
 
 1. Repo **Settings > Pages > Build and deployment > Source**: choose **GitHub Actions**.
 2. Push any change under `site/` (or run "Deploy site to GitHub Pages" from the **Actions** tab). It deploys in about a minute.
-3. **Custom domain:** in your DNS for `yesmidealab.com`, add a **CNAME** record: name `shop`, value `yesmidealabcontact-wq.github.io`.
-4. **Settings > Pages > Custom domain**: enter `shop.yesmidealab.com`, save, wait for the DNS check, then tick **Enforce HTTPS**.
-5. Recommended: **Settings > Pages > Verify** the domain `yesmidealab.com` so nobody else can claim your subdomain on GitHub.
+3. **Custom domain:** in your DNS for `yesmedialab.com`, add a **CNAME** record: name `shop`, value `yesmidealabcontact-wq.github.io`.
+4. **Settings > Pages > Custom domain**: enter `shop.yesmedialab.com`, save, wait for the DNS check, then tick **Enforce HTTPS**.
+5. Recommended: **Settings > Pages > Verify** the domain `yesmedialab.com` so nobody else can claim your subdomain on GitHub.
 
 ## Before launch
 
