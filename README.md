@@ -13,7 +13,9 @@ Website: **https://shop.yesmidealab.com**, hosted free on GitHub Pages.
 | `site/index.html` | Shop page for Mission Dossier No. 1: Operation Pastorius | Yes |
 | `site/policies.html`, `site/404.html` | Refunds and privacy; "page not found" | Yes |
 | `site/assets/` | Styles, fonts (SIL Open Font License, licence files included), preview images | Yes |
-| `site/free/pastorius-free-sample.pdf` | Free 3-page sample (pages 1, 5 and 7) | Yes |
+| `site/free/pipes-at-dawn-free-sample.pdf` | Free 3-page sample of Dossier No. 2 (pages 1, 3 and 13) | Yes |
+| `site/free/pastorius-free-sample.pdf` | Free 3-page sample of Dossier No. 1 (pages 1, 5 and 7) | Yes |
+| `site/assets/img/pipes/` | Page previews and share image for The Pipes at Dawn | Yes |
 | `marketing/` | Gumroad thumbnail, Gumroad custom landing page, share-image source | Yes |
 | `docs/gumroad-setup.md` | Step-by-step Gumroad product setup | Yes |
 | `private/products/` | Paid PDFs (US Letter + A4). Upload these to Gumroad | **No: your computer only** |

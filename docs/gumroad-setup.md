@@ -53,3 +53,37 @@ Do these in order. Total time: about 30–40 minutes. The only waiting is Gumroa
 
 ## If the link names change
 Edit both Buy links in `site/index.html` (search for `gumroad.com/l/`), commit, push to main. The site redeploys itself.
+
+---
+
+# Product 2: The Pipes at Dawn (main product on the website)
+
+Create it the same way as step 3 above, with these values.
+
+| Field | Enter exactly |
+| --- | --- |
+| Type | Digital product |
+| Name | The Pipes at Dawn (Mission Dossier No. 2) |
+| Price | $10 (one-time, USD) |
+| **URL slug** | **pipes-at-dawn** (must match the website: `yesmidealab.gumroad.com/l/pipes-at-dawn`) |
+| Cover image | `site/assets/img/pipes/cover.jpg` |
+| Thumbnail | `marketing/gumroad/pipes-thumbnail-1200.jpg` (square, 1200×1200) |
+| Files | `private/products/Lives-At-WW2_Mission-Dossier-02_The-Pipes-at-Dawn_Letter.pdf` (US Letter only) |
+
+**Description** (paste):
+
+> A man with no rifle, walking upright ahead of the attack, playing the bagpipes. Follow Scotland's battle pipers from the gas at Loos in 1915 to the minefields of El Alamein and Bill Millin on D-Day, and find out which famous stories are true and which are only legend.
+>
+> • 22 pages in large, clear type (US Letter; on A4 choose "Fit to page")
+> • 5 maps: Loos, El Alamein, the Alamein night attack, Sword Beach to Pegasus Bridge, and a visitor's map
+> • Record check: every famous claim marked Confirmed, Unproven or Legend, with sources
+> • The Victoria Cross citation, the roll of named Alamein pipers, the tunes they played
+> • "Was my grandfather a piper?" research guide and worksheet
+> • A frameable tribute page
+>
+> Goes with the documentary "What German Soldiers Said About the Scottish Highlanders' Bagpipes at Dawn" on Lives At WW2.
+> Digital download (PDF). Nothing is posted to you. 30-day money-back guarantee: email yesmidealab.contact@gmail.com.
+
+**Receipt / "Content" page:** "Thank you! Your dossier is below. Print at 100% on US Letter, or 'Fit to page' on A4. Questions? yesmidealab.contact@gmail.com"
+
+**On YouTube:** put `https://shop.yesmidealab.com` (or the Gumroad link) in the video description and pinned comment of https://youtu.be/nQwC8NlTFeY.
