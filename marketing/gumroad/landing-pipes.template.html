@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>The Pipes at Dawn: Complete Pack</title>
+<style>
+@font-face{font-family:"Plex Sans";src:url("{{FONT:ibm-plex-sans}}") format("woff");font-weight:100 700;font-stretch:85% 100%;font-display:swap}
+@font-face{font-family:"Courier Prime";src:url("{{FONT:courier-prime-bold}}") format("woff");font-weight:700;font-display:swap}
+
+:root{
+  --bg:#f8f5ee; --card:#ffffff; --band:#ece4d0; --ink:#1b1a17; --muted:#4a4740; --rule:#cfc5ad;
+  --navy:#1f3a5f; --accent:#9e3022; --accent-ink:#ffffff; --accent-hover:#7d2418; --stamp:#9e3022;
+  --ok:#1f3a5f; --part:#8a6414; --no:#9e3022;
+  --shadow:0 18px 40px rgba(40,30,10,.18);
+  --sans:"Plex Sans","Segoe UI",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:"Courier Prime","Courier New",monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#16150f; --card:#211f19; --band:#1c1a14; --ink:#f3efe4; --muted:#c3bdae; --rule:#3a362c;
+    --navy:#9dbbe0; --accent:#c4493a; --accent-hover:#d65e4f; --stamp:#e2786a;
+    --ok:#3d6593; --part:#a77a1c; --no:#c4493a;
+    --shadow:0 18px 40px rgba(0,0,0,.55);
+  }
+}
+*{box-sizing:border-box}
+html{font-size:20px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media (max-width:600px){html{font-size:19px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);line-height:1.6}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--navy);text-underline-offset:3px;text-decoration-thickness:2px}
+:focus-visible{outline:4px solid #e0a100;outline-offset:3px;border-radius:4px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
+h1,h2,h3{font-family:var(--sans);font-stretch:85%;font-weight:700;line-height:1.08;margin:0 0 .5em;color:var(--ink)}
+h2{font-size:clamp(1.7rem,3.6vw,2.4rem)}
+h3{font-size:1.2rem;font-stretch:90%}
+p{margin:0 0 1em;max-width:36em}
+.kicker{font-family:var(--mono);font-weight:700;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--stamp);margin:0 0 .7em}
+.lead{font-size:1.2rem;line-height:1.55}
+section{padding:72px 0}
+@media (max-width:600px){section{padding:48px 0}}
+.band{background:var(--card);border-block:1px solid var(--rule)}
+.tan{background:var(--band)}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:64px;padding:14px 32px;border-radius:10px;
+  font-family:var(--sans);font-weight:700;font-size:1.15rem;text-decoration:none;border:3px solid transparent;cursor:pointer;text-align:center;
+  transition:transform .15s ease,background-color .15s ease}
+.btn-buy{background:var(--accent);color:var(--accent-ink)}
+.btn-buy:hover{background:var(--accent-hover);color:var(--accent-ink);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:#f8f5ee;border-color:#f8f5ee}
+.btn-ghost:hover{background:#f8f5ee;color:#1b1a17}
+.btn-wide{width:100%;max-width:520px}
+.note{font-family:var(--sans);font-size:.92rem;color:var(--muted);margin:10px 0 0}
+
+/* hero: archive photo, always dark */
+.hero{position:relative;color:#f8f5ee;background:#14130f;overflow:hidden;padding:0}
+.hero .ph{position:absolute;inset:0;background:url("{{IMG:hero}}") center 40%/cover;filter:grayscale(1) contrast(1.05);opacity:.55}
+.hero .shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(20,19,15,.96) 0%,rgba(20,19,15,.82) 45%,rgba(20,19,15,.35) 100%)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:48px;align-items:center;padding-top:72px;padding-bottom:80px}
+@media (max-width:860px){.hero .wrap{grid-template-columns:minmax(0,1fr);gap:36px;padding-top:48px;padding-bottom:56px}}
+.hero h1{color:#f8f5ee;font-size:clamp(2.6rem,7vw,4.4rem);letter-spacing:-.01em;margin:.1em 0 .25em}
+.hero .kicker{color:#e8b3a8}
+.hero .lead{color:#efe9dc}
+.hero .note{color:#cfc8b8}
+.price-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 0}
+.price{font-family:var(--sans);font-weight:700;font-size:2.4rem;line-height:1}
+.price-sub{font-family:var(--sans);font-size:1rem;color:#cfc8b8}
+.actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:22px 0 4px}
+.cover-wrap{position:relative;justify-self:center;width:100%;max-width:400px}
+.cover{background:#fff;padding:12px;box-shadow:0 24px 60px rgba(0,0,0,.6);transform:rotate(2deg)}
+.stamp{position:absolute;left:-14px;bottom:30px;font-family:var(--mono);font-weight:700;font-size:1.05rem;letter-spacing:.12em;
+  color:#e06a57;border:4px solid #e06a57;padding:6px 14px;transform:rotate(-8deg);background:#14130f;
+  animation:stamp .5s cubic-bezier(.2,1.6,.4,1) .4s both}
+@keyframes stamp{from{opacity:0;transform:rotate(-8deg) scale(1.8)}to{opacity:1;transform:rotate(-8deg) scale(1)}}
+.credit{position:absolute;right:16px;bottom:10px;font-family:var(--sans);font-size:.7rem;color:rgba(248,245,238,.55)}
+
+/* five files */
+.files{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:32px}
+@media (max-width:1000px){.files{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:620px){.files{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.file{margin:0}
+.file button{all:unset;display:block;cursor:zoom-in;background:#fff;padding:6px;border:1px solid var(--rule);box-shadow:0 6px 16px rgba(40,30,10,.1);
+  transition:transform .2s ease;width:100%;box-sizing:border-box}
+.file button:hover{transform:translateY(-4px)}
+.file button:focus-visible{outline:4px solid #e0a100;outline-offset:3px}
+.file figcaption{font-family:var(--sans);font-size:.95rem;margin-top:10px;line-height:1.35}
+.file figcaption b{display:block;font-size:1rem}
+.num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;margin-right:6px;vertical-align:1px}
+
+/* record check teaser */
+.rc{width:100%;border-collapse:collapse;margin-top:28px;font-size:1rem;background:var(--card)}
+.rc th{font-family:var(--sans);font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:left;border-bottom:2px solid var(--ink);padding:10px 12px}
+.rc td{border-bottom:1px solid var(--rule);padding:14px 12px;vertical-align:top}
+.rc td:first-child{font-family:var(--sans);font-weight:600}
+.v{display:inline-block;font-family:var(--sans);font-weight:700;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:5px;color:#fff;white-space:nowrap}
+.v.ok{background:var(--ok)} .v.part{background:var(--part)} .v.no{background:var(--no)}
+@media (max-width:640px){.rc thead{display:none}.rc tr{display:block;border-bottom:1px solid var(--rule);padding:10px 0}.rc td{display:block;border:0;padding:4px 12px}}
+
+/* previews */
+.previews{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;margin-top:32px}
+@media (max-width:860px){.previews{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.previews{grid-template-columns:minmax(0,1fr)}}
+.previews figure{margin:0}
+.previews button{all:unset;display:block;cursor:zoom-in;background:#fff;padding:8px;border:1px solid var(--rule);box-shadow:0 6px 16px rgba(40,30,10,.08);
+  transition:transform .2s ease;width:100%;box-sizing:border-box}
+.previews button:hover{transform:translateY(-4px)}
+.previews button:focus-visible{outline:4px solid #e0a100;outline-offset:3px}
+.previews figcaption{font-family:var(--sans);font-size:1rem;margin-top:10px}
+.previews figcaption b{display:block}
+
+.feats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:28px}
+@media (max-width:900px){.feats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.feats{grid-template-columns:minmax(0,1fr)}}
+.feat{border-top:4px solid var(--ink);padding-top:14px}
+.feat p{font-size:1rem;margin:0}
+
+.steps{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:18px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:58px 1fr;gap:18px;align-items:start;background:var(--card);border:1px solid var(--rule);padding:20px;border-radius:10px;counter-increment:s}
+.steps li::before{content:counter(s);display:flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;
+  background:var(--navy);color:var(--bg);font-family:var(--sans);font-weight:700;font-size:1.45rem}
+.steps h3{margin:.3em 0 .3em}
+.steps p{margin:0;font-size:1.05rem}
+
+.faq{margin-top:26px;max-width:860px}
+.faq details{background:var(--card);border:1px solid var(--rule);border-radius:10px;margin-bottom:14px}
+.faq summary{cursor:pointer;list-style:none;padding:20px 60px 20px 22px;font-family:var(--sans);font-weight:700;font-size:1.1rem;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:22px;top:50%;transform:translateY(-50%);font-size:1.8rem;font-weight:500;color:var(--navy)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details>div{padding:0 22px 6px}
+.faq details p{font-size:1.05rem}
+
+.final{text-align:center}
+.final p{margin-left:auto;margin-right:auto}
+.final .big{font-family:var(--sans);font-weight:700;font-size:3rem;display:block;margin:10px 0 4px}
+.verse{font-style:italic;font-size:1.35rem;line-height:1.45;margin:0 auto 26px}
+.review{font-family:var(--sans);font-size:.95rem;color:var(--muted);margin-top:14px}
+
+footer{border-top:1px solid var(--rule);padding:36px 0;font-family:var(--sans);font-size:.95rem;color:var(--muted)}
+footer p{max-width:none;margin:0 0 6px}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--rule);padding:10px 16px;
+  display:none;align-items:center;justify-content:space-between;gap:12px;z-index:20;transform:translateY(110%);transition:transform .25s ease}
+.bar.show{transform:none}
+.bar .btn{min-height:52px;padding:10px 22px;font-size:1.05rem}
+.bar b{font-family:var(--sans);font-size:1.2rem}
+@media (max-width:700px){.bar{display:flex}body{padding-bottom:76px}}
+
+.lb{position:fixed;inset:0;background:rgba(10,9,7,.9);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+.lb.open{display:flex}
+.lb img{max-height:88vh;width:auto;background:#fff;padding:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.lb-close{position:absolute;top:16px;right:16px;min-width:56px;min-height:56px;border-radius:50%;border:0;background:#fff;color:#1b1a17;
+  font-size:1.8rem;font-family:var(--sans);cursor:pointer}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
+</style>
+</head>
+<body class="no-js">
+<main>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="ph" aria-hidden="true"></div><div class="shade" aria-hidden="true"></div>
+  <div class="wrap">
+    <div>
+      <p class="kicker">Lives At WW2 · Mission Dossier No. 2 · Complete Pack</p>
+      <h1>The Pipes at Dawn</h1>
+      <p class="lead">A man with no rifle, walking upright ahead of the attack, playing the bagpipes. Follow Scotland's battle pipers from the gas at Loos in 1915 to the minefields of El Alamein and Bill Millin on D-Day, and find out which famous stories are true and which are only legend.</p>
+      <div class="price-row">
+        <span class="price" data-gumroad-field="price">$10</span>
+        <span class="price-sub">one-time payment · 5 printable files</span>
+      </div>
+      <div class="actions">
+        <a class="btn btn-buy" href="#buy" role="button" data-gumroad-action="buy">Get the complete pack</a>
+        <a class="btn btn-ghost" href="#files">See what's inside</a>
+      </div>
+      <p class="note">Secure checkout by Gumroad. Your download link arrives by email straight away.</p>
+    </div>
+    <div class="cover-wrap">
+      <img class="cover" src="{{IMG:cover}}" width="450" height="582"
+           alt="Cover of the dossier, The Pipes at Dawn, with a map of Europe and North Africa marking Loos, St-Valéry, Sword Beach, Sicily and El Alamein.">
+      <span class="stamp" aria-hidden="true">FIELD FILE</span>
+    </div>
+  </div>
+  <span class="credit">Background: Sword Beach, 6 June 1944. IWM B 5103, public domain.</span>
+</section>
+
+<!-- FIVE FILES -->
+<section id="files">
+  <div class="wrap">
+    <p class="kicker">One price, five files</p>
+    <h2>What you get</h2>
+    <p class="lead">The dossier is the heart of the pack. Four bonus files turn it into something to print, frame and share with the family. Tap any file to see it larger.</p>
+    <div class="files">
+      <figure class="file reveal"><button type="button" data-full="{{IMG:cover}}" aria-label="Enlarge the dossier cover"><img src="{{IMG:cover}}" width="450" height="582" alt="The dossier cover."></button>
+        <figcaption><b><span class="num">1</span>The dossier</b>27 large-print pages</figcaption></figure>
+      <figure class="file reveal"><button type="button" data-full="{{IMG:maps}}" aria-label="Enlarge a page from the map pack"><img src="{{IMG:maps}}" width="450" height="582" alt="Map pack page: Sword Beach to the bridges."></button>
+        <figcaption><b><span class="num">2</span>Map pack</b>7 maps, one to a page</figcaption></figure>
+      <figure class="file reveal"><button type="button" data-full="{{IMG:prints}}" aria-label="Enlarge an archive photo print"><img src="{{IMG:prints}}" width="450" height="582" alt="Archive print: commandos landing on Sword Beach with Bill Millin in the foreground."></button>
+        <figcaption><b><span class="num">3</span>Photo prints</b>5 wartime photos to frame</figcaption></figure>
+      <figure class="file reveal"><button type="button" data-full="{{IMG:certificate}}" aria-label="Enlarge the certificate of remembrance"><img src="{{IMG:certificate}}" width="450" height="582" alt="Certificate of Remembrance with spaces for a name and regiment."></button>
+        <figcaption><b><span class="num">4</span>Tribute &amp; certificate</b>Add a family name</figcaption></figure>
+      <figure class="file reveal"><button type="button" data-full="{{IMG:workbook}}" aria-label="Enlarge a family history workbook page"><img src="{{IMG:workbook}}" width="450" height="582" alt="Workbook page: questions to ask the family."></button>
+        <figcaption><b><span class="num">5</span>Family workbook</b>Was grandfather a piper?</figcaption></figure>
+    </div>
+    <div class="actions" style="margin-top:34px">
+      <a class="btn btn-buy btn-wide" href="#buy" role="button" data-gumroad-action="buy">Get all five files: <span data-gumroad-field="price">$10</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- RECORD CHECK -->
+<section class="band">
+  <div class="wrap reveal">
+    <p class="kicker">Every legend checked</p>
+    <h2>Which famous stories are true?</h2>
+    <p class="lead">The dossier opens with a record check: each famous claim, what the evidence shows, and a verdict. Three of them:</p>
+    <table class="rc">
+      <thead><tr><th>The story</th><th>What the record shows</th><th>Verdict</th></tr></thead>
+      <tbody>
+      <tr><td>Piper Daniel Laidlaw played his company out of a gassed trench at Loos and won the Victoria Cross.</td><td>His citation was published in the London Gazette in November 1915. The dossier prints it in full.</td><td><span class="v ok">Confirmed</span></td></tr>
+      <tr><td>The Army banned pipers from playing men into battle after the First World War.</td><td>Piper losses were terrible, but no written order has ever been found.</td><td><span class="v part">Unproven</span></td></tr>
+      <tr><td>German soldiers named the kilted Scots "the Ladies from Hell."</td><td>The phrase appears in British newspapers from 1914. Wartime German sources don't use it.</td><td><span class="v no">Legend</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- INSIDE THE DOSSIER -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Inside the dossier</p>
+    <h2>Turn the pages before you buy</h2>
+    <div class="previews">
+      <figure class="reveal"><button type="button" data-full="{{IMG:p10}}" aria-label="Enlarge page 10, Into the dust"><img src="{{IMG:p10}}" width="450" height="582" alt="Page 10: archive photograph of infantry advancing through dust at El Alamein."></button>
+        <figcaption><b>Archive photographs</b>With notes on what to look for</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p09}}" aria-label="Enlarge page 9, the night of the pipers"><img src="{{IMG:p09}}" width="450" height="582" alt="Page 9: diagram of the night attack at El Alamein."></button>
+        <figcaption><b>The night of the pipers</b>El Alamein, 23 October 1942</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p12}}" aria-label="Enlarge page 12, the pipers of Alamein"><img src="{{IMG:p12}}" width="450" height="582" alt="Page 12: roll of named pipers at El Alamein."></button>
+        <figcaption><b>The pipers of Alamein</b>Named men, from the war-grave records</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p15}}" aria-label="Enlarge page 15, Bill Millin's D-Day"><img src="{{IMG:p15}}" width="450" height="582" alt="Page 15: map of Bill Millin's route from Sword Beach to Pegasus Bridge."></button>
+        <figcaption><b>Bill Millin's D-Day</b>From Sword Beach to the bridges</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p16}}" aria-label="Enlarge page 16, the piper steps off"><img src="{{IMG:p16}}" width="450" height="582" alt="Page 16: the wartime photograph of Bill Millin landing on Sword Beach."></button>
+        <figcaption><b>The piper steps off</b>The famous D-Day photo, explained</figcaption></figure>
+      <figure class="reveal"><button type="button" data-full="{{IMG:p03}}" aria-label="Enlarge page 3, record check"><img src="{{IMG:p03}}" width="450" height="582" alt="Page 3: the record check table."></button>
+        <figcaption><b>Record check</b>Every claim, with its source</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="band">
+  <div class="wrap">
+    <p class="kicker">Made for reading</p>
+    <h2>Easy on the eyes, honest about the facts</h2>
+    <div class="feats">
+      <div class="feat reveal"><h3>Large print</h3><p>14-point body text and strong contrast. No squinting at tiny captions.</p></div>
+      <div class="feat reveal"><h3>Maps and photos</h3><p>Seven maps, five archive photographs and the Victoria Cross citation.</p></div>
+      <div class="feat reveal"><h3>Your own family</h3><p>A workbook to find out if a relative served as a piper, plus museums to visit.</p></div>
+      <div class="feat reveal"><h3>Print at home</h3><p>All files are US Letter. On A4 paper, choose "Fit to page".</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="tan">
+  <div class="wrap">
+    <p class="kicker">How buying works</p>
+    <h2>Three simple steps</h2>
+    <ol class="steps">
+      <li><div><h3>Press the red button</h3><p>A secure Gumroad checkout opens on this page.</p></div></li>
+      <li><div><h3>Pay by card</h3><p>Type your email address and card details. The price is in US dollars; your bank converts it if you pay in another currency.</p></div></li>
+      <li><div><h3>Open your email</h3><p>Your receipt arrives within a minute with a "View content" link. Download the five files, or one zip with all of them. The link works again any time.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Questions</p>
+    <h2>Questions people ask</h2>
+    <div class="faq">
+      <details><summary>Is this a printed book?</summary><div><p>No. It is a set of digital files (PDFs) that you download and read on screen or print yourself. Nothing is posted to you.</p></div></details>
+      <details><summary>Does it repeat the documentary?</summary><div><p>No. It adds what a video can't: maps you can study, the Victoria Cross citation, war-grave records for named pipers, archive photographs, a family-history workbook, and a check of which famous stories can be proved.</p></div></details>
+      <details><summary>Are the photographs real?</summary><div><p>Yes: five wartime photographs, including Bill Millin landing on Sword Beach and Pegasus Bridge in June 1944. All are public-domain images.</p></div></details>
+      <details><summary>How do I open a PDF?</summary><div><p>On most computers, tablets and phones you simply tap or double-click the file. If it won't open, the free Adobe Acrobat Reader works on every device. Email us if you get stuck.</p></div></details>
+      <details><summary>What if I'm not happy with it?</summary><div><p>Email us within 30 days and we will refund you in full. No forms, no arguments.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL -->
+<section class="band final" id="buy">
+  <div class="wrap">
+    <p class="kicker">In memory of the pipers of the Highland regiments</p>
+    <p class="verse">They carried no rifles.<br>They carried everyone behind them.</p>
+    <h2 data-gumroad-field="name">The Pipes at Dawn (Mission Dossier No. 2)</h2>
+    <span class="big" data-gumroad-field="price">$10</span>
+    <p class="note" style="margin-bottom:22px">One-time payment · instant download · 30-day refund</p>
+    <a class="btn btn-buy btn-wide" href="#buy" role="button" data-gumroad-action="buy">Get the complete pack</a>
+    <p class="review"><span data-gumroad-field="rating">Be the first to review</span> · <span data-gumroad-field="review-count">new release</span></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p><b>Lives At WW2</b>: true stories from the Second World War.</p>
+    <p>Questions or help: <a href="mailto:yesmidealab.contact@gmail.com">yesmidealab.contact@gmail.com</a></p>
+    <p>Also from us: <a href="https://yesmidealab.gumroad.com/l/pastorius">Operation Pastorius: the case file</a></p>
+  </div>
+</footer>
+
+<div class="bar" id="bar" aria-hidden="true">
+  <b data-gumroad-field="price">$10</b>
+  <a class="btn btn-buy" href="#buy" role="button" data-gumroad-action="buy" tabindex="-1">Get the pack</a>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Page preview">
+  <button class="lb-close" type="button" aria-label="Close preview">&times;</button>
+  <img alt="" id="lb-img">
+</div>
+
+<script>
+(function () {
+  document.body.classList.remove("no-js");
+  var els = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    els.forEach(function (el) { io.observe(el); });
+  } else { els.forEach(function (el) { el.classList.add("in"); }); }
+
+  var bar = document.getElementById("bar"), hero = document.getElementById("top"), fin = document.getElementById("buy");
+  function onScroll() {
+    var past = hero.getBoundingClientRect().bottom < 0;
+    var atEnd = fin.getBoundingClientRect().top < window.innerHeight;
+    bar.classList.toggle("show", past && !atEnd);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+  var lb = document.getElementById("lb"), img = document.getElementById("lb-img"), closeBtn = lb.querySelector(".lb-close"), last = null;
+  function open(btn) { last = btn; img.src = btn.getAttribute("data-full"); img.alt = btn.querySelector("img").alt; lb.classList.add("open"); closeBtn.focus(); }
+  function close() { lb.classList.remove("open"); img.removeAttribute("src"); if (last) last.focus(); }
+  document.querySelectorAll("button[data-full]").forEach(function (b) { b.addEventListener("click", function () { open(b); }); });
+  closeBtn.addEventListener("click", close);
+  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && lb.classList.contains("open")) close(); });
+})();
+</script>
+</body>
+</html>

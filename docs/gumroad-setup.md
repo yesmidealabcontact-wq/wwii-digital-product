@@ -97,3 +97,23 @@ The five PDFs (all US Letter):
 **On YouTube:** put `https://shop.yesmidealab.com` (or the Gumroad link) in the video description and pinned comment of https://youtu.be/nQwC8NlTFeY.
 
 **Rebuilding:** in `private/build`, run `python dossier_pipes.py` then `python pack_pipes.py`. Archive photos live in `private/photos/` (never commit them with the paid files; they are public domain, but the folder is private by design).
+
+## Custom landing page for The Pipes at Dawn (Gumroad product ID `jnbhpje`)
+
+`marketing/gumroad/landing-pipes.html` is a self-contained page (fonts and images inlined) that replaces the
+default Gumroad product page. It has four `data-gumroad-action="buy"` buttons and live price/name fields.
+Rebuild it after changing previews: `python marketing/gumroad/build_landing_pipes.py` (needs `private/photos/b5103.jpg`).
+
+Run on your own computer (needs the Gumroad CLI and `gumroad auth login`):
+
+```
+cd marketing/gumroad
+gumroad products page preview jnbhpje ./landing-pipes.html --json --no-input --non-interactive
+```
+Check `.sanitization_report` (no `<script>`, `data-gumroad-*` or `<button>` stripped) and that `.warning` is empty. Then:
+```
+gumroad products page publish jnbhpje ./landing-pipes.html --json --no-input --non-interactive
+gumroad products page url jnbhpje --json --jq '.product.landing_url' --no-input --non-interactive
+```
+Open the live page and click "Get the complete pack" through to the checkout screen (don't pay).
+To undo: `gumroad products page clear jnbhpje --yes --json --no-input --non-interactive`
